@@ -1,6 +1,8 @@
+import Customer from "@/components/customer-form/Customer";
+
 export const metadata = {
-  title: 'Builder',
-  description: 'A simple builder',
+  title: 'Job Card',
+  description: 'Logic System Job Card',
   authors: [
     {
       name: 'Komal Raut',
@@ -9,6 +11,6 @@ export const metadata = {
   ],
 };
 export const viewport = 'width=device-width, initial-scale=1';
-const IndexPage = () => <div>Home Page</div>;
+const IndexPage = () => <Customer />;
 
 export default IndexPage;
