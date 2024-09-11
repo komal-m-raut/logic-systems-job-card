@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,10 +12,60 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { PlusIcon } from 'lucide-react';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+// Define the schema using zod
+const customerSchema = z.object({
+  customerName: z.string().min(1, { message: 'Customer Name is required' }),
+  srNo: z.string().min(1, { message: 'Sr.No is required' }),
+  companyName: z.string().min(1, { message: 'Company Name is required' }),
+  accessories: z.array(z.string()).optional(),
+  mobileNumber: z
+    .string()
+    .min(1, { message: 'Mobile Number is required' })
+    .regex(/^\+?[1-9]\d{1,14}$/, { message: 'Invalid mobile number format' }),
+  password: z.string().min(1, { message: 'Password is required' }),
+  material: z.string().optional(),
+  problem: z.string().min(1, { message: 'Problem is required' }),
+  brand: z.string().optional(),
+  receivedBy: z.string().min(1, { message: 'Received By is required' }),
+  modelNo: z.string().min(1, { message: 'Model No. is required' }),
+});
 
 const CustomerForm = () => {
+  const form = useForm<z.infer<typeof customerSchema>>({
+    resolver: zodResolver(customerSchema),
+    defaultValues: {
+      customerName: '',
+      srNo: '',
+      companyName: '',
+      accessories: [],
+      mobileNumber: '',
+      password: '',
+      material: '',
+      problem: '',
+      brand: '',
+      receivedBy: '',
+      modelNo: '',
+    },
+  });
+
+  const onSubmit = (data: z.infer<typeof customerSchema>) => {
+    console.log(data, 'data');
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -22,82 +74,84 @@ const CustomerForm = () => {
           Add New
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Create New Customer</DialogTitle>
-          <DialogDescription>
-            Make changes to your form here. Click save when you're done.
-          </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="customerName" className="text-right">
-                Customer Name
-              </Label>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="customerName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Customer Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="shadcn" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="srNo"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Sr.No</FormLabel>
+                      <FormControl>
+                        <Input placeholder="123456" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="companyName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Company Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Google" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="mobileNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Mobile Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="+919876543210" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Password</FormLabel>
+                      <FormControl>
+                        <Input placeholder="password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="srNo" className="text-right">
-                Sr.No
-              </Label>
-              <Input id="srNo" className="col-span-1" />
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="companyName" className="text-right">
-                Company Name
-              </Label>
-              <Input id="companyName" className="col-span-1" />
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="accessories" className="text-right">
-                Accessories
-              </Label>
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="mobileNumber" className="text-right">
-                Mobile Number
-              </Label>
-              <Input id="mobileNumber" className="col-span-1" />
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="password" className="text-right">
-                Password
-              </Label>
-              <Input id="password" type="password" className="col-span-1" />
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="material" className="text-right">
-                Material
-              </Label>
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="problem" className="text-right">
-                Problem
-              </Label>
-              <Input id="problem" className="col-span-1" />
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="brand" className="text-right">
-                Brand
-              </Label>
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="receivedBy" className="text-right">
-                Received By
-              </Label>
-              <Input id="receivedBy" className="col-span-1" />
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="modelNo" className="text-right">
-                Model No.
-              </Label>
-              <Input id="modelNo" className="col-span-1" />
-            </div>
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+            <Button type="submit">Submit</Button>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
