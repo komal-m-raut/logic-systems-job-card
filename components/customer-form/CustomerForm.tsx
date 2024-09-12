@@ -22,6 +22,14 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -89,7 +97,24 @@ const CustomerForm = () => {
                     <FormItem>
                       <FormLabel className="font-bold">Customer Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Customer Name" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="m@example.com">
+                              Company 1
+                            </SelectItem>
+                            <SelectItem value="m@google.com">
+                              Company 2
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -121,6 +146,37 @@ const CustomerForm = () => {
                     </FormItem>
                   )}
                 />
+                {/* <FormField
+                  control={form.control}
+                  name="accessories"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Accessories</FormLabel>
+                      <FormControl>
+                        <Select
+                          multiple
+                          onValueChange={(value) => field.onChange(value)}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Accessories" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Accessory 1">
+                              Accessory 1
+                            </SelectItem>
+                            <SelectItem value="Accessory 2">
+                              Accessory 2
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                /> */}
                 <FormField
                   control={form.control}
                   name="mobileNumber"
@@ -147,6 +203,106 @@ const CustomerForm = () => {
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="material"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Material</FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Material" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="m@example.com">
+                              Company 1
+                            </SelectItem>
+                            <SelectItem value="m@google.com">
+                              Company 2
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="problem"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Problem</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Problem" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="brand"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Brand</FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Brand" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="brand1">
+                              Brand 1
+                            </SelectItem>
+                            <SelectItem value="brand2">
+                              Brand 2
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="receivedBy"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Received By</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Received By" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="modelNo"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Model No</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Model No" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
               </div>
             </div>
             <Button type="submit">Submit</Button>
