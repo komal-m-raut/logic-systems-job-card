@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -16,7 +14,6 @@ import { PlusIcon } from 'lucide-react';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -77,7 +74,7 @@ const CustomerForm = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-primary">
+        <Button>
           <PlusIcon className="mr-2 h-4 w-4" />
           Add New
         </Button>

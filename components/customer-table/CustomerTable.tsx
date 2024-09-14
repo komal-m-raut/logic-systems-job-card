@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
+import CustomerDetailsModal from './CustomerDetailsModal';
 
 const headers = [
   'Job No',
@@ -52,7 +53,7 @@ const CustomerTable = () => {
           <TableCell>$300.00</TableCell>
           <TableCell>Urgent</TableCell>
           <TableCell className="text-right">
-            <Button className={cn('bg-purple-900')}>Info</Button>
+            <CustomerDetailsModal />{' '}
           </TableCell>
         </TableRow>
       </TableBody>
