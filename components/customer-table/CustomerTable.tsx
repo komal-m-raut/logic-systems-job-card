@@ -8,9 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Button } from '../ui/button';
-import { cn } from '@/lib/utils';
 import CustomerDetailsModal from './CustomerDetailsModal';
+import { CustomerData } from '@/types/jobs';
 
 const headers = [
   'Job No',
@@ -25,39 +24,50 @@ const headers = [
   'Info',
 ];
 
-const CustomerTable = () => {
+
+interface CustomerTableProps {
+  data: CustomerData[];
+}
+
+const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
+  console.log(data);
   return (
-    <Table>
-      <TableCaption>A list of your recent jobs.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          {headers.map((header, index) => (
-            <TableHead
-              key={index}
-              className={header === 'Info' ? 'text-right' : ''}
-            >
-              {header}
-            </TableHead>
+    <div>
+      <div className="flex items-center justify-between"></div>
+      <Table>
+        <TableCaption>A list of your recent jobs.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            {headers.map((header, index) => (
+              <TableHead
+                key={index}
+                className={header === 'Info' ? 'text-right' : ''}
+              >
+                {header}
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((item) => (
+            <TableRow key={item.id}>
+              <TableCell className="font-medium">{item.jobNo}</TableCell>
+              <TableCell>{item.customerName}</TableCell>
+              <TableCell>{item.companyName}</TableCell>
+              <TableCell>{item.date}</TableCell>
+              <TableCell>{item.mobileNo}</TableCell>
+              <TableCell>{item.problem}</TableCell>
+              <TableCell>{item.currentStatus}</TableCell>
+              <TableCell>{item.estimate}</TableCell>
+              <TableCell>{item.remark}</TableCell>
+              <TableCell className="text-right">
+                <CustomerDetailsModal />
+              </TableCell>
+            </TableRow>
           ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">JOB001</TableCell>
-          <TableCell>John Doe</TableCell>
-          <TableCell>Acme Corp</TableCell>
-          <TableCell>2023-10-01</TableCell>
-          <TableCell>+1234567890</TableCell>
-          <TableCell>Network Issue</TableCell>
-          <TableCell>In Progress</TableCell>
-          <TableCell>$300.00</TableCell>
-          <TableCell>Urgent</TableCell>
-          <TableCell className="text-right">
-            <CustomerDetailsModal />{' '}
-          </TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 
