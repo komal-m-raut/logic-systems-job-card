@@ -71,6 +71,10 @@ const CustomerForm = () => {
     console.log(data, 'data');
   };
 
+  const options = [
+    { value: 'm@example.com', label: 'Company 1' },
+    { value: 'm@google.com', label: 'Company 2' },
+  ];
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -7,7 +7,7 @@ import { UploadIcon } from 'lucide-react';
 import CustomerTable from '../customer-table/CustomerTable';
 import CustomerForm from './CustomerForm';
 import Papa from 'papaparse';
-import { CustomerData } from '@/types/jobs';
+import { CustomerData } from '@/types/jobs.types';
 
 const sampleData: CustomerData[] = [
   {
@@ -34,6 +34,7 @@ const sampleData: CustomerData[] = [
 ];
 
 const Customer = () => {
+  
   const exportToCSV = () => {
     const columns = [
       'Job No',

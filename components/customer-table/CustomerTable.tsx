@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import CustomerDetailsModal from './CustomerDetailsModal';
-import { CustomerData } from '@/types/jobs';
+import { CustomerData } from '@/types/jobs.types';
 
 const headers = [
   'Job No',
@@ -30,7 +30,6 @@ interface CustomerTableProps {
 }
 
 const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
-  console.log(data);
   return (
     <div>
       <div className="flex items-center justify-between"></div>
