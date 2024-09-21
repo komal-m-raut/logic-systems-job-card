@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -10,6 +10,15 @@ import {
 } from '@/components/ui/table';
 import CustomerDetailsModal from './CustomerDetailsModal';
 import { CustomerData } from '@/types/jobs.types';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from '@/components/ui/pagination';
 
 const headers = [
   'Job No',
@@ -24,12 +33,24 @@ const headers = [
   'Info',
 ];
 
-
 interface CustomerTableProps {
   data: CustomerData[];
 }
 
 const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1;
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const currentData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between"></div>
@@ -48,7 +69,7 @@ const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((item) => (
+          {currentData.map((item) => (
             <TableRow key={item.id}>
               <TableCell className="font-medium">{item.jobNo}</TableCell>
               <TableCell>{item.customerName}</TableCell>
@@ -66,6 +87,26 @@ const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
           ))}
         </TableBody>
       </Table>
+      <Pagination className="mt-4">
+        <PaginationContent>
+          <PaginationPrevious
+            onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+          />
+          {[...Array(totalPages)].map((_, index) => (
+            <PaginationItem key={index}>
+              <PaginationLink
+                isActive={index + 1 === currentPage}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+          <PaginationNext
+            onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+          />
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 };

@@ -30,11 +30,9 @@ const sampleData: CustomerData[] = [
     password: 'password123',
     receivedBy: 'Jane Smith',
   },
-  // Add more sample data as needed
 ];
 
 const Customer = () => {
-  
   const exportToCSV = () => {
     const columns = [
       'Job No',
