@@ -1,4 +1,4 @@
-export interface CustomerData {
+export interface JobsData {
     id: string;
     jobNo: string;
     date: string;

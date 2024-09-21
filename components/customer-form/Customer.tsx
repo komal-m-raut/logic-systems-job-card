@@ -4,12 +4,12 @@ import React from 'react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { UploadIcon } from 'lucide-react';
-import CustomerTable from '../customer-table/CustomerTable';
+import CustomerTable from '../customer-table/JobsTable';
 import CustomerForm from './CustomerForm';
 import Papa from 'papaparse';
-import { CustomerData } from '@/types/jobs.types';
+import { JobsData } from '@/types/jobs.types';
 
-const sampleData: CustomerData[] = [
+const sampleData: JobsData[] = [
   {
     id: '1',
     jobNo: 'JOB001',
