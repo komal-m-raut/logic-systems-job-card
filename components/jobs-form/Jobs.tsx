@@ -4,8 +4,8 @@ import React from 'react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { UploadIcon } from 'lucide-react';
-import CustomerTable from '../customer-table/JobsTable';
-import CustomerForm from './CustomerForm';
+import CustomerTable from '../jobs-table/JobsTable';
+import CustomerForm from './JobsForm';
 import Papa from 'papaparse';
 import { JobsData } from '@/types/jobs.types';
 
@@ -32,7 +32,7 @@ const sampleData: JobsData[] = [
   },
 ];
 
-const Customer = () => {
+const Jobs = () => {
   const exportToCSV = () => {
     const columns = [
       'Job No',
@@ -111,4 +111,4 @@ const Customer = () => {
   );
 };
 
-export default Customer;
+export default Jobs;

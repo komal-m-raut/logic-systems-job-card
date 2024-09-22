@@ -49,7 +49,7 @@ const customerSchema = z.object({
   modelNo: z.string().min(1, { message: 'Model No. is required' }),
 });
 
-const CustomerForm = () => {
+const JobsForm = () => {
   const form = useForm<z.infer<typeof customerSchema>>({
     resolver: zodResolver(customerSchema),
     defaultValues: {
@@ -264,12 +264,8 @@ const CustomerForm = () => {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="brand1">
-                              Brand 1
-                            </SelectItem>
-                            <SelectItem value="brand2">
-                              Brand 2
-                            </SelectItem>
+                            <SelectItem value="brand1">Brand 1</SelectItem>
+                            <SelectItem value="brand2">Brand 2</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>
@@ -303,7 +299,6 @@ const CustomerForm = () => {
                     </FormItem>
                   )}
                 />
-
               </div>
             </div>
             <Button type="submit">Submit</Button>
@@ -314,4 +309,4 @@ const CustomerForm = () => {
   );
 };
 
-export default CustomerForm;
+export default JobsForm;

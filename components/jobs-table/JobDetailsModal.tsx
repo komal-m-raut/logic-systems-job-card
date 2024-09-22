@@ -12,7 +12,7 @@ import { Separator } from '../ui/separator';
 import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
 
-const CustomerDetailsModal = () => {
+const JobDetailsModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -39,4 +39,4 @@ const CustomerDetailsModal = () => {
   );
 };
 
-export default CustomerDetailsModal;
+export default JobDetailsModal;

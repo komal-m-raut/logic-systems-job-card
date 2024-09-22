@@ -1,4 +1,4 @@
-import Customer from "@/components/customer-form/Customer";
+import Jobs from '@/components/jobs-form/Jobs';
 
 export const metadata = {
   title: 'Job Card',
@@ -11,6 +11,6 @@ export const metadata = {
   ],
 };
 export const viewport = 'width=device-width, initial-scale=1';
-const IndexPage = () => <Customer />;
+const IndexPage = () => <Jobs />;
 
 export default IndexPage;

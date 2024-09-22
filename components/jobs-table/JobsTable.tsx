@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import CustomerDetailsModal from './CustomerDetailsModal';
+import CustomerDetailsModal from './JobDetailsModal';
 import { JobsData } from '@/types/jobs.types';
 import {
   Pagination,
