@@ -38,7 +38,6 @@ interface JobsTableProps {
 }
 
 const JobsTable: React.FC<JobsTableProps> = ({ data }) => {
-  console.log(data, 'data');
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [dateFilter, setDateFilter] = useState('');
