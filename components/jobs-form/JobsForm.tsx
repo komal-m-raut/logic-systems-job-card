@@ -30,6 +30,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { cn } from '@/lib/utils';
 
 // Define the schema using zod
 const customerSchema = z.object({
@@ -67,14 +68,15 @@ const JobsForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof customerSchema>) => {
-    console.log(data, 'data');
+  const onReset = () => {
+    form.reset();
   };
 
-  const options = [
-    { value: 'm@example.com', label: 'Company 1' },
-    { value: 'm@google.com', label: 'Company 2' },
-  ];
+  const onSubmit = (data: z.infer<typeof customerSchema>) => {
+    console.log(data, 'data');
+    onReset();
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -147,37 +149,6 @@ const JobsForm = () => {
                     </FormItem>
                   )}
                 />
-                {/* <FormField
-                  control={form.control}
-                  name="accessories"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-bold">Accessories</FormLabel>
-                      <FormControl>
-                        <Select
-                          multiple
-                          onValueChange={(value) => field.onChange(value)}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Accessories" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Accessory 1">
-                              Accessory 1
-                            </SelectItem>
-                            <SelectItem value="Accessory 2">
-                              Accessory 2
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
                 <FormField
                   control={form.control}
                   name="mobileNumber"
@@ -301,7 +272,12 @@ const JobsForm = () => {
                 />
               </div>
             </div>
-            <Button type="submit">Submit</Button>
+            <div className="flex space-x-4">
+              <Button type="submit">Submit</Button>
+              <Button type="button" onClick={onReset}>
+                Cancel
+              </Button>
+            </div>
           </form>
         </Form>
       </DialogContent>
