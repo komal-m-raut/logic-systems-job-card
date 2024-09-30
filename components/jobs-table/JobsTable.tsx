@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import CustomerDetailsModal from './JobDetailsModal';
+import JobDetailsModal from './JobDetailsModal';
 import { JobsData } from '@/types/jobs.types';
 import {
   Pagination,
@@ -111,7 +111,7 @@ const JobsTable: React.FC<JobsTableProps> = ({ data }) => {
               <TableCell>{item.estimate}</TableCell>
               <TableCell>{item.remark}</TableCell>
               <TableCell className="text-right">
-                <CustomerDetailsModal />
+                <JobDetailsModal data={item} />
               </TableCell>
             </TableRow>
           ))}
