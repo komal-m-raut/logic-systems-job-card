@@ -1,5 +1,5 @@
 export interface JobsData {
-    id: string;
+    id?: string;
     jobNo: string;
     date: string;
     customerName: string;

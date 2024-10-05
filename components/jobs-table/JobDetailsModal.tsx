@@ -12,6 +12,7 @@ import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input'; // Assuming you have an Input component
 import { JobsData } from '@/types/jobs.types';
+import ReceiptModal from './ReceiptModal';
 
 const JobDetailsModal: React.FC<{ data: JobsData }> = ({ data }) => {
   const [enableEdit, setEnableEdit] = useState(false);
@@ -163,7 +164,7 @@ const JobDetailsModal: React.FC<{ data: JobsData }> = ({ data }) => {
           </div>
           <div className="flex items-center space-x-1">
             <Label className="w-1/3">Receipt:</Label>
-            <Button disabled={!enableEdit}>Print Receipt</Button>
+            <ReceiptModal />
           </div>
         </div>
         <div className="flex justify-center ">
